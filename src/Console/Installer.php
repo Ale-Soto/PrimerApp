@@ -81,11 +81,11 @@ class Installer
      */
     public static function createAppLocalConfig(string $dir, IOInterface $io): void
     {
-        $appLocalConfig = $dir . '/config/app_local.php';
+        $appLocalConfig = $dir . '/config/app_conection.php';
         $appLocalConfigTemplate = $dir . '/config/app_local.example.php';
         if (!file_exists($appLocalConfig)) {
             copy($appLocalConfigTemplate, $appLocalConfig);
-            $io->write('Created `config/app_local.php` file');
+            $io->write('Created `config/app_conection.php` file');
         }
     }
 
@@ -184,7 +184,7 @@ class Installer
     public static function setSecuritySalt(string $dir, IOInterface $io): void
     {
         $newKey = hash('sha256', Security::randomBytes(64));
-        static::setSecuritySaltInFile($dir, $io, $newKey, 'app_local.php');
+        static::setSecuritySaltInFile($dir, $io, $newKey, 'app_conection.php');
     }
 
     /**
